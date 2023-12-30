@@ -63,6 +63,19 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>${postgreSQL.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-maven-plugin</artifactId>
+            <version>9.22.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.hypersistence</groupId>
+            <artifactId>hypersistence-utils-hibernate-62</artifactId>
+            <version>3.7.0</version>
         </dependency>
     </dependencies>
 
@@ -72,7 +85,7 @@
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
-                <version>${flyway.version}</version>
+                <version>9.22.2</version>
                 <configuration>
                     <url>jdbc:postgresql://localhost:5432/test</url>
                     <user>postgres</user>
@@ -81,13 +94,6 @@
                         <location>filesystem:src/main/resources/db/migration</location>
                     </locations>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.postgresql</groupId>
-                        <artifactId>postgresql</artifactId>
-                        <version>${postgreSQL.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
     </build>

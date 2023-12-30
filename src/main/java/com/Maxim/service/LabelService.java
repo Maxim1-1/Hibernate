@@ -1,13 +1,16 @@
 package com.Maxim.service;
 
 import com.Maxim.model.Label;
+import com.Maxim.repository.LabelRepository;
+import com.Maxim.repository.hibernate.HibernateLabelRepositoryImpl;
 import com.Maxim.repository.jdbc.JDBCLabelRepositoryImpl;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class LabelService {
 
-    private final JDBCLabelRepositoryImpl jdbc = new JDBCLabelRepositoryImpl();
+    private final LabelRepository jdbc = new HibernateLabelRepositoryImpl();
 
     public Label saveLabel(Label label) {
         return jdbc.save(label);

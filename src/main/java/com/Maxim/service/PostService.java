@@ -2,16 +2,19 @@ package com.Maxim.service;
 
 
 import com.Maxim.model.Post;
+import com.Maxim.repository.PostRepository;
+import com.Maxim.repository.hibernate.HibernatePostRepositoryImpl;
 import com.Maxim.repository.jdbc.JDBCPostRepositoryImpl;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class PostService {
 
-    private final JDBCPostRepositoryImpl jdbc = new JDBCPostRepositoryImpl();
+    private final PostRepository jdbc = new HibernatePostRepositoryImpl();
 
     public Post savePost(Post post) {
-       return jdbc.save(post);
+            return jdbc.save(post);
     }
 
     public Post getPostById(Integer postId) {

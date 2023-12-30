@@ -1,15 +1,45 @@
 package com.Maxim.model;
 
+import io.hypersistence.utils.hibernate.type.basic.PostgreSQLEnumType;
+import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnTransformer;
+import org.hibernate.annotations.Type;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "post")
 public class Post {
+
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
+
+    @Column(name = "content")
     private String content;
+
+    @Column(name = "created")
     private String created;
+
+    @Column(name = "updated")
     private String updated;
+
+    @Enumerated(EnumType.STRING)
+    @ColumnTransformer(write = "?::post_status_enum")
+    @Column(name = "status")
     private PostStatus postStatus;
+
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+//    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "post_labels",
+            joinColumns = @JoinColumn(name = "postid"),
+            inverseJoinColumns = @JoinColumn(name = "labelid"))
     private List<Label> labels=new ArrayList<>();
+
+    @ManyToOne()
+    @JoinColumn(name = "writer_id")
     private Writer writer;
 
 

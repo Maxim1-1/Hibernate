@@ -1,14 +1,25 @@
 package com.Maxim.model;
 
+import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
-
+@Entity
+@Table(name = "writer")
 public class Writer {
-    private int id;
-    private String firstName;
-    private String lastName;
-    private List<Post> post = new ArrayList<>();
 
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private int id;
+
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "last_name")
+    private String lastName;
+
+    @OneToMany(mappedBy = "writer")
+    private List<Post> posts=new ArrayList<>();
 
     public void setId(int id) {
         this.id = id;
@@ -34,15 +45,15 @@ public class Writer {
     }
 
     public List<Post> getPosts() {
-        return post;
+        return posts;
     }
 
     public void setPosts(List<Post> post) {
-        this.post = post;
+        this.posts = post;
     }
     public void setPost(Post post) {
-        this.post.add(post);
+        this.posts.add(post);
     }
-
-
 }
+
+
