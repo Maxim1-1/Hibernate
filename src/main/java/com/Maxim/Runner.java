@@ -1,10 +1,7 @@
 package com.Maxim;
 
-import com.Maxim.dbutils.Connector;
-import com.Maxim.liquibase.LiquibaseRunner;
 import com.Maxim.view.DispatcherView;
 
-import java.sql.SQLException;
 import java.util.Scanner;
 
 
@@ -23,7 +20,4 @@ public class Runner {
             }
         }
     }
-
-
-
 }

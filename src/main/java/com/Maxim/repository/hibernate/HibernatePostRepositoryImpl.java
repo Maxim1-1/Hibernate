@@ -24,7 +24,7 @@ public class HibernatePostRepositoryImpl implements PostRepository {
     @Override
     public List<Post> getAll() {
         Session session = hibernateConnector.getSessionFactory().openSession();
-        return session.createQuery("from Post").getResultList();
+        return session.createQuery("select p from Post p left join fetch p.labels left join fetch p.writer").getResultList();
     }
 
     @Override
