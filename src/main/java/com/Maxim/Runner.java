@@ -1,7 +1,6 @@
 package com.Maxim;
 
 import com.Maxim.view.DispatcherView;
-
 import java.util.Scanner;
 
 
