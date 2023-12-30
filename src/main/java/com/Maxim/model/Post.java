@@ -32,7 +32,6 @@ public class Post {
     private PostStatus postStatus;
 
     @ManyToMany(fetch = FetchType.EAGER)
-//    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "post_labels",
             joinColumns = @JoinColumn(name = "postid"),
             inverseJoinColumns = @JoinColumn(name = "labelid"))
