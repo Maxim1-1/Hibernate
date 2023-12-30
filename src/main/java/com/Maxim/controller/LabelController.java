@@ -26,12 +26,12 @@ public class LabelController {
         labelService.deleteLabelById(labelId);
     }
 
-    public void updateLabelById(Integer labelId,String newNameLabel) {
+    public Label updateLabelById(Integer labelId,String newNameLabel) {
        Label label = new Label();
        label.setId(labelId);
        label.setName(newNameLabel);
 
-       labelService.updateLabel(label);
+      return labelService.updateLabel(label);
 
     }
 

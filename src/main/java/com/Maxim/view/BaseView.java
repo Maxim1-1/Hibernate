@@ -20,5 +20,4 @@ public class BaseView {
         System.out.print("Запись успешно добавлена, id = "+id);
     }
 
-
 }

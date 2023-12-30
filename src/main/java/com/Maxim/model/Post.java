@@ -31,7 +31,7 @@ public class Post {
     @Column(name = "status")
     private PostStatus postStatus;
 
-    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
 //    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "post_labels",
             joinColumns = @JoinColumn(name = "postid"),

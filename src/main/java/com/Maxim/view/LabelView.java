@@ -1,6 +1,7 @@
 package com.Maxim.view;
 
 import com.Maxim.model.Label;
+import com.Maxim.model.Post;
 
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +27,7 @@ public class LabelView extends BaseView{
 
     public void getAllLabels(List<Label> labels){
         for (Label label:labels) {
-            System.out.print(String.format("id: %s, name: %s\n",label.getId(),label.getName()));
+            outputLabelDataInConsole(label);
         }
 
     }
@@ -38,6 +39,11 @@ public class LabelView extends BaseView{
         userDataFromConsole.put("labelName",labelName);
 
         return userDataFromConsole;
+    }
+
+
+    public void outputLabelDataInConsole(Label label) {
+        System.out.print(String.format("id: %s, name: %s\n",label.getId(),label.getName()));
     }
 
 }

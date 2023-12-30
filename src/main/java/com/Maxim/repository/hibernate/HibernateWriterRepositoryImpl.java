@@ -1,5 +1,6 @@
 package com.Maxim.repository.hibernate;
 
+import com.Maxim.dbutils.Hibernate_utils.HibernateConnector;
 import com.Maxim.model.Label;
 import com.Maxim.model.Post;
 import com.Maxim.model.Writer;
@@ -12,45 +13,47 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class HibernateWriterRepositoryImpl implements WriterRepository {
+
+    HibernateConnector hibernateConnector = new HibernateConnector();
     @Override
-    public Writer getById(Integer integer) {
-        return null;
+    public Writer getById(Integer id) {
+        Session session = hibernateConnector.getSessionFactory().openSession();
+        return session.get(Writer.class,id);
     }
 
     @Override
     public List<Writer> getAll() {
-        return null;
+
+        Session session = hibernateConnector.getSessionFactory().openSession();
+        return session.createQuery("from Writer").getResultList();
     }
 
     @Override
     public Writer save(Writer writer)  {
-//        Configuration configuration = new Configuration();
-//
-//        configuration.configure();
-//        configuration.addAnnotatedClass(Label.class);
-//        configuration.addAnnotatedClass(Writer.class);
-//        configuration.addAnnotatedClass(Post.class);
-//
-//        configuration.buildSessionFactory();
-//
-//        try (
-//                Session session = configuration.buildSessionFactory().openSession())
-//        {
-//            Transaction transaction = session.beginTransaction();
-//            session.persist(writer);
-//
-//            transaction.commit();
-//        }
+        Session session = hibernateConnector.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        session.persist(writer);
+        transaction.commit();
         return writer;
     }
 
     @Override
     public Writer update(Writer writer) {
-        return null;
+        Session session = hibernateConnector.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        session.merge(writer);
+        transaction.commit();
+        return writer;
+
     }
 
     @Override
-    public void deleteById(Integer integer) {
+    public void deleteById(Integer id) {
+        Session session = hibernateConnector.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        Writer writer = session.get(Writer.class,id);
+        session.remove(writer);
+        transaction.commit();
 
     }
 }

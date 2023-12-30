@@ -1,45 +1,52 @@
 package com.Maxim.repository.hibernate;
 
+import com.Maxim.dbutils.Hibernate_utils.HibernateConnector;
 import com.Maxim.model.Label;
-import com.Maxim.model.Post;
-import com.Maxim.model.Writer;
 import com.Maxim.repository.LabelRepository;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
-
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class HibernateLabelRepositoryImpl implements LabelRepository {
+
+    HibernateConnector hibernateConnector = new HibernateConnector();
     @Override
-    public Label getById(Integer integer) {
-        return null;
+    public Label getById(Integer id) {
+
+        Session session = hibernateConnector.getSessionFactory().openSession();
+        return session.get(Label.class,id);
     }
 
     @Override
     public List<Label> getAll() {
-        return new ArrayList<>();
+        Session session = hibernateConnector.getSessionFactory().openSession();
+        return session.createQuery("from Label").getResultList();
     }
 
     @Override
     public Label save(Label label)  {
-//        Session session = hibernateConnector.getSessionFactory().openSession();
-//        Transaction transaction = session.beginTransaction();
-//        session.persist(label);
-//        transaction.commit();
-
+        Session session = hibernateConnector.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        session.persist(label);
+        transaction.commit();
         return label;
     }
 
     @Override
     public Label update(Label label) {
-        return null;
+        Session session = hibernateConnector.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        session.merge(label);
+        transaction.commit();
+        return label;
     }
 
     @Override
-    public void deleteById(Integer integer) {
-
+    public void deleteById(Integer id) {
+        Session session = hibernateConnector.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        Label label = session.get(Label.class,id);
+        session.remove(label);
+        transaction.commit();
     }
 }

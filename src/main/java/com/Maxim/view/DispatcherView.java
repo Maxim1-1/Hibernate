@@ -47,7 +47,8 @@ public class DispatcherView {
             case "update writer by id":
                 Integer updateWriterId = writerView.getIdFromConsole("Введите поста id для обновления");
                 HashMap<String, String> updatedData = writerView.updateWriterById();
-                writerController.updateWriterById(updateWriterId, updatedData);
+                Writer updateWriter = writerController.updateWriterById(updateWriterId, updatedData);
+                writerView.outputWriterDataInConsole(updateWriter);
                 break;
             case "delete writer by id":
                 Integer deleteWriterId = writerView.getIdFromConsole("Введите writer id для удаления");
@@ -70,7 +71,8 @@ public class DispatcherView {
             case "update label by id":
                 Integer updateLabelId = labelView.getIdFromConsole("Введите label id для обновления");
                 String newNameLabel = labelView.updateLabelById().get("labelName");
-                labelController.updateLabelById(updateLabelId,newNameLabel);
+                Label updateLabel = labelController.updateLabelById(updateLabelId,newNameLabel);
+                labelView.outputLabelDataInConsole(updateLabel);
                 break;
             case "delete label by id":
                 Integer deleteLabelId = labelView.getIdFromConsole("Введите label id");

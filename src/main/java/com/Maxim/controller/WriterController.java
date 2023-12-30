@@ -31,9 +31,8 @@ public class WriterController {
         writerService.deleteWriterById(writerId);
     }
 
-    public void updateWriterById(Integer writerId, HashMap<String, String> updatedData) {
-        Writer writer = new Writer();
-        writer.setId(writerId);
+    public Writer updateWriterById(Integer writerId, HashMap<String, String> updatedData) {
+        Writer writer = writerService.getWriterById(writerId);
 
         updatedData.forEach((key, value) -> {
             switch (key) {
@@ -45,6 +44,6 @@ public class WriterController {
                     break;
             }
         });
-        writerService.updateWriter(writer);
+       return writerService.updateWriter(writer);
     }
 }

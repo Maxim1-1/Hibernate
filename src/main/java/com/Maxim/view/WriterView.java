@@ -1,6 +1,7 @@
 package com.Maxim.view;
 
 
+import com.Maxim.model.Label;
 import com.Maxim.model.Writer;
 
 import java.util.HashMap;
@@ -37,9 +38,7 @@ public class WriterView extends BaseView {
 
     public void getAllWriters(List<Writer> writers) {
         for (Writer writer : writers) {
-            System.out.print(String.format("id: %s, firstName: %s, lastName : %s, \n",
-                    writer.getId(), writer.getFirstName(), writer.getLastName()));
-
+      outputWriterDataInConsole(writer);
         }
     }
 
@@ -53,6 +52,11 @@ public class WriterView extends BaseView {
         }
         return userDataFromConsole;
 
+    }
+
+    public void outputWriterDataInConsole(Writer writer) {
+        System.out.print(String.format("id: %s, firstName: %s, lastName : %s, \n",
+                writer.getId(), writer.getFirstName(), writer.getLastName()));
     }
 
 }

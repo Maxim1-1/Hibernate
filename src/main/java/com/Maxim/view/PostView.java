@@ -69,12 +69,7 @@ public class PostView extends BaseView {
 
     public void getAllPosts(List<Post> posts) {
         for (Post post : posts) {
-
-            System.out.print(String.format("id: %s,  content: %s, created: %s, updated: %s, status: %s \n",
-                    post.getId(), post.getContent(), post.getCreated(), post.getUpdated(), post.getPostStatus()));
-            System.out.print("Теги поста: ");
-            post.getLabels().stream().map(label -> label.getName() + "\n").forEach(System.out::print);
-
+            outputPostDataInConsole(post);
         }
     }
 
